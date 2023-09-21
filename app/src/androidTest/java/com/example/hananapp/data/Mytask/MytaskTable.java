@@ -11,7 +11,8 @@ public class MytaskTable {
     @PrimaryKey(autoGenerate = true)
     public long keyid;/**رقم المهمة*/
     public int importance;/**درجة الاهمية*/
-    public String text;/**نص النهمة*/
+    public String text;/**نص المهمة*/
+    public boolean isCompleted;/**هل تمت العملية*/
     public long time;/**زمن بناء المهمة*/
     /**
      * رقم موضوع المهمة
@@ -28,6 +29,8 @@ public class MytaskTable {
                 "keyid=" + keyid +
                 ", importance=" + importance +
                 ", text='" + text + '\'' +
+                ", isCompleted=" + isCompleted +
+                ", time=" + time +
                 ", subjId=" + subjId +
                 ", userId=" + userId +
                 '}';
