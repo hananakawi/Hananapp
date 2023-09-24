@@ -13,13 +13,16 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_margin="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etE-mail"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="hint" />
-
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:hint="E-mail"
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -27,23 +30,34 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="hint" />
-
+                android:layout_margin="8dp"
+                android:hint="password"
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/btnSignIn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_height="75dp"
+            android:layout_margin="8dp"
+            android:background="#4CAF50"
+            android:backgroundTint="#FFFFFF"
+            android:inputType="textEmailAddress"
+            android:shadowColor="#28FF01"
+            android:text="SIGN IN"
+            android:textColor="@color/black"
+            app:iconTint="#00000000" />
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_height="86dp"
+            android:layout_margin="8dp"
+            android:inputType="textEmailAddress"
+            android:text="SIGN UP " />
 
     </LinearLayout>
 
