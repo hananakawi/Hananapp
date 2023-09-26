@@ -64,5 +64,3 @@ public interface MytaskQuery {
     Void delTask(long id);
 }
 
-
-
