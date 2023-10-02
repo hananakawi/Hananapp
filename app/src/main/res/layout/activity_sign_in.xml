@@ -17,7 +17,7 @@
             android:layout_margin="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etE-mail"
+                android:id="@+id/etE_mail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
