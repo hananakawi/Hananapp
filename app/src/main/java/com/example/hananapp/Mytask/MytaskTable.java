@@ -1,4 +1,4 @@
-package com.example.hananapp.data.Mytask;
+package com.example.hananapp.Mytask;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

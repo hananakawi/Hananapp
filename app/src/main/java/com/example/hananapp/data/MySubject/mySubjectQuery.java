@@ -1,4 +1,4 @@
-package com.example.hananapp.data;
+package com.example.hananapp.data.MySubject;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.hananapp.data.Mytask.MytaskTable;
+import com.example.hananapp.Mytask.MytaskTable;
 
 import java.util.List;
 @Dao
