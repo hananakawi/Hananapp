@@ -10,7 +10,7 @@ import com.example.hananapp.Mytask.MytaskTable;
 
 import java.util.List;
 @Dao
-     interface MySubjectQuery {
+public interface MySubjectQuery {
     /**
      * اعادة جميع معطيات جدول المهمات
      * @return * قائمة من المهمات
