@@ -12,16 +12,50 @@ import com.example.hananapp.data.MySubject.MySubjectQuery;
 import com.example.hananapp.data.MySubject.mySubject;
 import com.example.hananapp.data.usersTable.MyUser;
 
-@Database(entities = {MyUser.class, mySubject.class, MyTask.class},version = 5)
+
+/*
+نعريف الجداول ورقم النسخة
+version
+عند تغيير اي شيء يخص جدول او جداول علينا تغيير رقم  الاصدار ليتم بناء قاعدة البيانات من جديد
+ */
+@Database(entities = {MyUser.class, mySubject.class, MyTask.class},version = 1)
+/**
+ * الفئة المسؤولة عن بناء قاعدة البيانات لكل جداولها
+ * وتوفر لنا كائن للتعامل مع قاعدة البيانات
+ */
 
    public abstract class AppDatabase extends RoomDatabase
 
 {
+    /**
+     * كائن للتعامل مع قاعدة البيانات
+     */
+
     private static AppDatabase db;
+
+    /**
+     * يعيد كائن لعملبات جدول المستعملين
+     * @return
+     */
     public abstract MytaskQuery getMyUserQuery();
+
+    /**
+     *  يعيد كائن لعملبات جدول مواضيع
+     * @return
+     */
     public abstract MySubjectQuery getMySubjectQuery();
+
+    /**
+     *  يعيد كائن لعملبات جدول المهمات
+     * @return
+     */
     public abstract MytaskQuery getMyTaskQuery();
 
+    /**
+     * بناء قاعدة البيانات واعادة كائن يؤشر عليها
+     * @param context
+     * @return
+     */
     public static AppDatabase getDB(Context context)
     {
         if(db==null)

@@ -21,7 +21,7 @@ public interface MySubjectQuery {
  * ادخال مهمات
  */
 @Insert
-Void insertubject(MySubjectQuery... t); //ثلاثة نقاط تعني ادخال مجموعة
+Void insertSubject(mySubject... t); //ثلاثة نقاط تعني ادخال مجموعة
     /**
      * تعديل المهمات
      */
@@ -31,6 +31,6 @@ Void insertubject(MySubjectQuery... t); //ثلاثة نقاط تعني ادخا�
     @Delete
     Void deletesubject(MySubjectQuery... t);
 
-    @Query("DELETE FROM MYTASKTABLE WHERE keyid=:id ")
+    @Query("DELETE FROM mySubject WHERE key_id=:id ")
     Void delTask(long id);
 }
