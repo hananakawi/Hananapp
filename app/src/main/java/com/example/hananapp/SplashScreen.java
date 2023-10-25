@@ -10,7 +10,7 @@ import com.example.hananapp.data.AppDatabase;
 import com.example.hananapp.data.MySubject.MySubjectQuery;
 import com.example.hananapp.data.MySubject.mySubject;
 
-public class MainActivity extends AppCompatActivity
+public class SplashScreen extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

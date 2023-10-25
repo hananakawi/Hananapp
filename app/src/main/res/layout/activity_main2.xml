@@ -2,23 +2,42 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fabAdd"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentBottom="true"
     tools:context=".MainActivity2">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="409dp"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="130dp">
+        android:clickable="true"
+        app:srcCompat="@android:drawable/btn_plus" />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputEditText
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="hint"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="175dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
+        <SearchView
+            android:id="@+id/srchV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </SearchView>
+
+        <Spinner
+            android:id="@+id/spnrSubject"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1" />
+
+        <ListView
+            android:id="@+id/lstvTasks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 </RelativeLayout>
