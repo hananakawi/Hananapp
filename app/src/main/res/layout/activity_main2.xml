@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fabAdd"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_alignParentEnd="true"
@@ -10,34 +10,38 @@
     tools:context=".MainActivity2">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/fabadd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:clickable="true"
-        app:srcCompat="@android:drawable/btn_plus" />
+        android:contentDescription="add new task"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <SearchView
-            android:id="@+id/srchV"
+        <androidx.appcompat.widget.SearchView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </SearchView>
+            android:layout_height="wrap_content" />
 
         <Spinner
-            android:id="@+id/spnrSubject"
+            android:id="@+id/spinner2"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_weight="1" />
+            android:backgroundTint="#E6AAAA"
+            android:contentDescription="chose a subject " />
 
         <ListView
             android:id="@+id/lstvTasks"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+
+        </ListView>
 
     </LinearLayout>
 </RelativeLayout>

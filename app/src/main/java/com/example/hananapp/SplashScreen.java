@@ -15,7 +15,7 @@ public class SplashScreen extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.splashscreen);
         Log.d("HA","onCreate");
         Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
         //هو كائن مرئي يعرض رسالة نصصية على الشاشة لفترة قصيرة ثم تختفي تلقائيا
