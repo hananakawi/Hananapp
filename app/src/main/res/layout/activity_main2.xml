@@ -4,44 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_alignParentEnd="true"
     android:layout_alignParentBottom="true"
     tools:context=".MainActivity2">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabadd"
+        android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:clickable="true"
-        android:contentDescription="add new task"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/btn_plus" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.SearchView
+        <SearchView
+            android:id="@+id/srchV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+
+        </SearchView>
 
         <Spinner
-            android:id="@+id/spinner2"
+            android:id="@+id/spnrSubject"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:backgroundTint="#E6AAAA"
-            android:contentDescription="chose a subject " />
+            android:layout_weight="1" />
 
         <ListView
             android:id="@+id/lstvTasks"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-        </ListView>
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </RelativeLayout>
