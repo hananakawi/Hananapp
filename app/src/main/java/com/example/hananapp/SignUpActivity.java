@@ -22,5 +22,11 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         btnCancel=findViewById(R.id.btnCancel);
+        btnSave=findViewById(R.id.btnSave);
+        etE_mail=findViewById(R.id.etE_mail);
+        etpassword=findViewById(R.id.etpassword);
+        etrepassword=findViewById(R.id.etrepassword);
+        etname=findViewById(R.id.etname);
+        etphone=findViewById(R.id.etphone);
     }
 }

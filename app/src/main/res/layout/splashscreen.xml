@@ -8,7 +8,7 @@
     tools:context=".SplashScreen">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnGo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
@@ -17,10 +17,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tvWelcomeToHananApp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvWelcomeToHananApp"
         android:layout_width="459dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -28,7 +28,7 @@
         android:layout_marginBottom="559dp"
         android:text="welcome to Hanan's app"
         android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/btnGo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,19 @@
+Index: app/src/main/res/layout/activity_main2.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<RelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/fabAdd\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:layout_alignParentEnd=\"true\"\r\n    android:layout_alignParentBottom=\"true\"\r\n    tools:context=\".MainActivity2\">\r\n\r\n    <com.google.android.material.floatingactionbutton.FloatingActionButton\r\n        android:id=\"@+id/floatingActionButton\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:clickable=\"true\"\r\n        app:srcCompat=\"@android:drawable/btn_plus\" />\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\">\r\n\r\n        <SearchView\r\n            android:id=\"@+id/srchV\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\">\r\n\r\n        </SearchView>\r\n\r\n        <Spinner\r\n            android:id=\"@+id/spnrSubject\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:layout_weight=\"1\" />\r\n\r\n        <ListView\r\n            android:id=\"@+id/lstvTasks\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\" />\r\n\r\n    </LinearLayout>\r\n</RelativeLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main2.xml b/app/src/main/res/layout/activity_main2.xml
+--- a/app/src/main/res/layout/activity_main2.xml	(revision a0698fabc1dcd763384d395588cae9724759bce6)
++++ b/app/src/main/res/layout/activity_main2.xml	(date 1698258681640)
+@@ -10,7 +10,7 @@
+     tools:context=".MainActivity2">
+ 
+     <com.google.android.material.floatingactionbutton.FloatingActionButton
+-        android:id="@+id/floatingActionButton"
++        android:id="@+id/fabAdd"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:clickable="true"

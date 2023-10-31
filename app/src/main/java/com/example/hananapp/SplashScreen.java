@@ -2,8 +2,12 @@ package com.example.hananapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hananapp.data.AppDatabase;
@@ -12,10 +16,14 @@ import com.example.hananapp.data.MySubject.mySubject;
 
 public class SplashScreen extends AppCompatActivity
 {
+private Button btnGo;
+private TextView tvWelcomeToHananApp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
+        btnGo=findViewById(R.id.btnGo);
+        tvWelcomeToHananApp=findViewById(R.id.tvWelcomeToHananApp);
         Log.d("HA","onCreate");
         Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
         //هو كائن مرئي يعرض رسالة نصصية على الشاشة لفترة قصيرة ثم تختفي تلقائيا
@@ -31,8 +39,22 @@ public class SplashScreen extends AppCompatActivity
         //اضافة كائن للجدول
       subjectQuery.insertSubject(s1);
       subjectQuery.insertSubject(s2);
-
+        Handler h=new Handler();
+        Runnable r=new Runnable() {
+            public void run()
+            {
+                //to open new activity from current to next
+                Intent i= new Intent(SplashScreen.this, SignInActivity.class);
+                startActivity(i);
+                //to close current activity
+                finish();
+            }
+        };
+        h.postDelayed(r,3000);
     }
+
+
+
 
     @Override
     protected void onRestart() {
