@@ -2,10 +2,15 @@ package com.example.hananapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.hananapp.data.AppDatabase;
+import com.example.hananapp.data.usersTable.MyUser;
+import com.example.hananapp.data.usersTable.MyuserQuery;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -31,6 +36,17 @@ public class SignUpActivity extends AppCompatActivity {
         etname=findViewById(R.id.etname);
         etphone=findViewById(R.id.etphone);
     }
+    public void onClickSigUp(View v) {
+        checkData();
+
+
+    }
+
+    public void onClickSave(View v) {
+        Intent i = new Intent(SignUpActivity.this, SplashScreen.class);
+        startActivity(i);
+        finish();
+    }
     private void checkData()
     {
         boolean isAllOk=true; // يحوي نتيجة فحص الحقول ان كانت سليمة
@@ -49,10 +65,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         //استخراج رقم الهاتف
         String number=etphone.getText().toString();
-
-
-
-
 
         // فحص الايميل ان كان طوله أقل من 6 أو لا يحتوي على @ فهو خاطئ
         if (email.length()<6 || email.contains("@")== false)
@@ -93,6 +105,22 @@ public class SignUpActivity extends AppCompatActivity {
         if (isAllOk)
         {
             Toast.makeText(this,"All ok",Toast.LENGTH_SHORT).show();
+            if (isAllOk) {
+                AppDatabase db = AppDatabase.getDB(getApplicationContext());
+                MyuserQuery userQurey = db.getMyUserQuery();
+
+                if (userQurey.checkEmail(email) != null) {
+                    etE_mail.setError("found email");
+                } else {
+                    MyUser MyUser = new MyUser();
+                    MyUser.email = email;
+                    MyUser.fullName = name;
+                    MyUser.password = pass;
+                    MyuserQuery.insert((MyUser) MyUser);
+                    finish();
+
+                }
+            }
         }
     }
 }

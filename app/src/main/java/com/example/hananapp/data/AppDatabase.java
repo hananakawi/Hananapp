@@ -11,6 +11,7 @@ import com.example.hananapp.Mytask.MytaskQuery;
 import com.example.hananapp.data.MySubject.MySubjectQuery;
 import com.example.hananapp.data.MySubject.mySubject;
 import com.example.hananapp.data.usersTable.MyUser;
+import com.example.hananapp.data.usersTable.MyuserQuery;
 
 
 /*
@@ -37,7 +38,7 @@ version
      * يعيد كائن لعملبات جدول المستعملين
      * @return
      */
-    public abstract MytaskQuery getMyUserQuery();
+    public abstract MyuserQuery getMyUserQuery();
 
     /**
      *  يعيد كائن لعملبات جدول مواضيع

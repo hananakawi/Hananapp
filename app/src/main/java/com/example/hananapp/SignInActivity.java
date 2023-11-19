@@ -4,13 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Looper;
 import android.view.View;
-import android.view.textclassifier.TextClassificationSessionFactory;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.hananapp.data.AppDatabase;
+import com.example.hananapp.data.usersTable.MyuserQuery;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class SignInActivity extends AppCompatActivity {
@@ -65,9 +64,24 @@ private Button  btnSignUp;
         if (isAllOk)
         {
             Toast.makeText(this,"All ok", Toast.LENGTH_SHORT).show();
+            // بناء قاعدة بيانات وارجاع مؤشر عليها
+            AppDatabase db=AppDatabase.getDB(getApplicationContext());
+            //مؤشر لكائن عمليات الجدول
+            MyuserQuery userQuery = (MyuserQuery) db.getMyUserQuery();
+            MyuserQuery MyUser = userQuery.checkEmailpassword(email, pass);
+            if (MyUser==null){
+                Toast.makeText(this, "wrong email or password", Toast.LENGTH_LONG).show();
 
+            }
+            else
+            {
+                Intent i=new Intent(SignInActivity.this, MainActivity2.class);
+                startActivity(i);
+                finish();
+            }
         }
-    }
+        }
+
     public void onClicktoSignin(View v)
     {
         checkEmailPass();
