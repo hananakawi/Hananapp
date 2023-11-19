@@ -4,17 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class SignUpActivity extends AppCompatActivity {
     private Button btnCancel;
     private Button btnSave;
-    private TextInputLayout etE_mail;
-    private TextInputLayout etpassword;
-    private TextInputLayout etrepassword;
-    private TextInputLayout etname;
-    private TextInputLayout etphone;
+    private TextInputEditText etE_mail;
+    private TextInputEditText etpassword;
+    private TextInputEditText etrepassword;
+    private TextInputEditText etname;
+    private TextInputEditText etphone;
 
 
     @Override
@@ -28,5 +30,69 @@ public class SignUpActivity extends AppCompatActivity {
         etrepassword=findViewById(R.id.etrepassword);
         etname=findViewById(R.id.etname);
         etphone=findViewById(R.id.etphone);
+    }
+    private void checkData()
+    {
+        boolean isAllOk=true; // يحوي نتيجة فحص الحقول ان كانت سليمة
+
+        // استخراج النص من حقل الايميل
+        String email= etE_mail.getText().toString();
+
+        // استخراج نص كلمة المرور
+        String pass=etpassword.getText().toString();
+
+        // استخراج تكرار كلمة المرور
+        String repassword=etrepassword.getText().toString();
+
+        // استخراج الاسم
+        String name=etname.getText().toString();
+
+        //استخراج رقم الهاتف
+        String number=etphone.getText().toString();
+
+
+
+
+
+        // فحص الايميل ان كان طوله أقل من 6 أو لا يحتوي على @ فهو خاطئ
+        if (email.length()<6 || email.contains("@")== false)
+        {
+            // تعديل المتغير ليدل على أن الفحص يعطي نتيجة خاطئة
+            isAllOk=false;
+            // عرض ملاحظة خطأ على الشاشة داخل حقل البريد
+            etE_mail.setError("wrong email");
+        }
+
+        // يجب أن تكون كلمة المرر من ثمانية ولا تحوي فراغ اذا كان بها هذه الأشياء فانه يرجع نص بأن كلمة المرور خاطئة
+        if (pass.length()<8 || pass.contains(" ")== true)
+        {
+            isAllOk=false;
+            etpassword.setError("Wrong password");
+        }
+
+        //يجب أن يكون تكرار كلمة المرور نفس كلمة المرور
+        if (repassword.equals(pass)==false)
+        {
+            isAllOk=false;
+            etrepassword.setError("not the same");
+        }
+
+        //يجب أن يكون الاسم اجباري ولو حر واحد لو ترك الاسم بدون أن يكتبه فانه يرجع نص بانه فارغ
+        if (name.length()<1)
+        {
+            isAllOk=false;
+            etname.setError("name is empty");
+        }
+
+        //يفحص اذا الرقم مكون من 10 أرقام واذا لم يكن من 10 أرقام فانه يرجع نص بانه خطأ
+        if (number.length()!=10)
+        {
+            etphone.setError("Wrong number");
+        }
+
+        if (isAllOk)
+        {
+            Toast.makeText(this,"All ok",Toast.LENGTH_SHORT).show();
+        }
     }
 }

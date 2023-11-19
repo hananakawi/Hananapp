@@ -17,7 +17,7 @@ public interface MytaskQuery {
      * اعادة جميع معطيات جدول المهمات
      * @return * قائمة من المهمات
      */
-    @Query("SELECT * FROM MYTASKTABLE")
+    @Query("SELECT * FROM MytaskQuery")
     List<MytaskTable> getAllTasks();
 
     /**
@@ -60,7 +60,7 @@ public interface MytaskQuery {
     @Delete
     Void deleteTask(MytaskTable... t);
 
-    @Query("DELETE FROM MYTASKTABLE WHERE keyid=:id ")
+    @Query("DELETE FROM MytaskTable WHERE keyid=:id ")
     Void delTask(long id);
 }
 

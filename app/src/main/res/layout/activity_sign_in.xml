@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="onClicktoSignin"
     tools:context=".SignInActivity">
 
     <LinearLayout
@@ -46,6 +47,7 @@
             android:background="#4CAF50"
             android:backgroundTint="#FFFFFF"
             android:inputType="textEmailAddress"
+            android:onClick="onClicktoSignin"
             android:shadowColor="#28FF01"
             android:text="SIGN IN"
             android:textColor="@color/black"
@@ -57,6 +59,7 @@
             android:layout_height="86dp"
             android:layout_margin="8dp"
             android:inputType="textEmailAddress"
+            android:onClick="onClickSignUP"
             android:text="SIGN UP " />
 
     </LinearLayout>
