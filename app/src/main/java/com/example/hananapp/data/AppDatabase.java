@@ -6,7 +6,6 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.hananapp.Mytask.MyTask;
 import com.example.hananapp.Mytask.MytaskQuery;
 import com.example.hananapp.data.MySubject.MySubjectQuery;
 import com.example.hananapp.data.MySubject.mySubject;

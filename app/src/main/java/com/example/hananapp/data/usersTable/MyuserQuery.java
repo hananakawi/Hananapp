@@ -12,12 +12,12 @@ import java.util.List;
 /**
  * واجهة تحوي عمليات/دوال/استعلامات على قاعدة البيانات
  */
+@Dao//لتحديد ان الواجهة تحوي استعلامات على قاعدة بيانات
 public interface MyuserQuery
 {
     MyuserQuery checkEmailpassword(String email, String pass);
 
-    @Dao//لتحديد ان الواجهة تحوي استعلامات على قاعدة بيانات
-    public interface MyUserQuery {
+
         @Query("SELECT * FROM MyUser")
         List<MyUser> getAll();
 
@@ -27,8 +27,10 @@ public interface MyuserQuery
         @Query("SELECT * FROM MyUser WHERE email = :myEmail AND " +
                 "password = :myPassw LIMIT 1")
         MyUser checkEmailPassword(String myEmail, String myPassw);
-        @Query("SELECT * FROM user Where email = :myEmail")
+
+        @Query("SELECT * FROM MyUser Where email = :myEmail")
         MyUser checkEmail(String myEmail);
+
         @Insert
         void insertAll(MyUser... users);
 
@@ -42,6 +44,6 @@ public interface MyuserQuery
         void insert(MyUser myUser);
         @Update
         void update(MyUser...values);
-    }
+
 
 }

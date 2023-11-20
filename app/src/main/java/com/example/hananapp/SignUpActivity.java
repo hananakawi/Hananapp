@@ -116,7 +116,7 @@ public class SignUpActivity extends AppCompatActivity {
                     MyUser.email = email;
                     MyUser.fullName = name;
                     MyUser.password = pass;
-                    MyuserQuery.insert((MyUser) MyUser);
+                    userQurey .insert( MyUser);
                     finish();
 
                 }

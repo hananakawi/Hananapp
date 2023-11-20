@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
  * فئة تمثل مهمة
  */
 @Entity
-public class MytaskTable {
+public class Mytask {
     @PrimaryKey(autoGenerate = true)
     public long keyid;/**رقم المهمة*/
     public int importance;/**درجة الاهمية*/

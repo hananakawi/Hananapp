@@ -7,60 +7,60 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import java.util.List;
-
+@Dao
+public interface MytaskQuery {
 /**
  * واجهة استعلامات على جدول معطيات
  */
-@Dao
-public interface MytaskQuery {
+
+
+
     /**
-     * اعادة جميع معطيات جدول المهمات
-     * @return * قائمة من المهمات
+     * اعادة جميع رمعطيات الجدول
+     * @return قائمةمن.المهمات
      */
-    @Query("SELECT * FROM MytaskQuery")
-    List<MytaskTable> getAllTasks();
+    @Query("SELECT * FROM Mytask")
+    List<Mytask> getAll();
 
     /**
      *
-     * @param userid_p
-     * @return
+     * '@param userid_p
+     * '@param isCompleted_p
+     * '@return
      */
-    @Query("SELECT * FROM MytaskTable WHERE userId=:userid_p" +
-            " ORDER BY time DESC")
-    List<MytaskTable> getAllTaskOrderBy(long userid_p);
+    @Query("SELECT * FROM Mytask WHERE userId=:userid_p AND isCompleted=:isCompleted_p "
+            +"ORDER BY importance DESC")
+    List<Mytask> taskOrderBy(long userid_p, boolean isCompleted_p);
 
-    /**
-     * استخراج المهمات حسب المستعمل واذا انتهت ام لا ومرتبة تنازلية حسب الاهمية
-     * @param userid_p*رقم المستعمل
-     * @param isCompleted_p*هل تمت العملية ام لا
-     * @return
-     */
-
-@Query("SELECT * FROM MytaskTable WHERE userId=:userid_p AND isCompleted=:isCompleted_p" +
-        " ORDER BY importance DESC")
-    List<MytaskTable> getAllTaskOrderBy(long userid_p,boolean isCompleted_p);
+    @Query("SELECT * FROM Mytask WHERE userId=:userid_p " +
+            " ORDER BY time DESC " )
+    List<Mytask> taskByTime(long userid_p);
     /**
      * ادخال مهمات
-     * @param t*مجموعة مهممات
+     * @param tasks مجموعة مهمات
      */
     @Insert
-    Void insertTask(MytaskTable... t); //ثلاثة نقاط تعني ادخال مجموعة
+    void insertAll(Mytask... tasks);// تلت نقط يعني مجموعة
+
+    /**
+     * حذف مهمات
+     * '@param user
+     */
+    @Delete
+    void delete(Mytask user);
+
+    @Query("Delete From Mytask WHERE keyid=:id ")
+    void deleteTask(long id);
+
+
+    @Insert
+    void insert(Mytask task);
 
     /**
      * تعديل المهمات
-     * @param t * مجموعة مهمات للتعديل (التعديل حسب المفتاح الرئيسي)
+     * '@param tasks
      */
     @Update
-    Void updateTask(MytaskTable... t);
+    void update(Mytask...tasks);
 
-    /**
-     * حذف مهمة او مهمات
-     * @param t * حذف المهمات (حسب المفتاح الرئيسي)
-     */
-    @Delete
-    Void deleteTask(MytaskTable... t);
-
-    @Query("DELETE FROM MytaskTable WHERE keyid=:id ")
-    Void delTask(long id);
 }
-
