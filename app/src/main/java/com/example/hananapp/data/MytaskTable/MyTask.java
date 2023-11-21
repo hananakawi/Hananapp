@@ -1,4 +1,4 @@
-package com.example.hananapp.Mytask;
+package com.example.hananapp.data.MytaskTable;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
  * فئة تمثل مهمة
  */
 @Entity
-public class Mytask {
+public class MyTask {
     @PrimaryKey(autoGenerate = true)
     public long keyid;/**رقم المهمة*/
     public int importance;/**درجة الاهمية*/

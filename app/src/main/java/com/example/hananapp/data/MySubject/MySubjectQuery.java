@@ -6,7 +6,6 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.hananapp.Mytask.MytaskTable;
 
 import java.util.List;
 @Dao
@@ -15,22 +14,22 @@ public interface MySubjectQuery {
      * اعادة جميع معطيات جدول المهمات
      * @return * قائمة من المهمات
      */
-    @Query("SELECT * FROM mySubject")
-    List<MytaskTable> getAllsubjects();
+    @Query("SELECT * FROM MySubject")
+    List<MySubject> getAllSubjects();
 /**
  * ادخال مهمات
  */
 @Insert
-Void insertSubject(mySubject... t); //ثلاثة نقاط تعني ادخال مجموعة
+void insertSubject(MySubject... t); //ثلاثة نقاط تعني ادخال مجموعة
     /**
      * تعديل المهمات
      */
     @Update
-    Void updatesubject(MySubjectQuery... t);
+    void updatesubject(MySubject... t);
 
     @Delete
-    Void deletesubject(MySubjectQuery... t);
+    void deletesubject(MySubject... t);
 
-    @Query("DELETE FROM mySubject WHERE key_id=:id ")
-    Void delTask(long id);
+    @Query("DELETE FROM MySubject WHERE key_id=:id ")
+    void delTask(long id);
 }

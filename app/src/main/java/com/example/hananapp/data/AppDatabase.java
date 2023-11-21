@@ -6,9 +6,10 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.hananapp.Mytask.MytaskQuery;
+import com.example.hananapp.data.MytaskTable.MyTask;
+import com.example.hananapp.data.MytaskTable.MytaskQuery;
 import com.example.hananapp.data.MySubject.MySubjectQuery;
-import com.example.hananapp.data.MySubject.mySubject;
+import com.example.hananapp.data.MySubject.MySubject;
 import com.example.hananapp.data.usersTable.MyUser;
 import com.example.hananapp.data.usersTable.MyuserQuery;
 
@@ -18,7 +19,7 @@ import com.example.hananapp.data.usersTable.MyuserQuery;
 version
 عند تغيير اي شيء يخص جدول او جداول علينا تغيير رقم  الاصدار ليتم بناء قاعدة البيانات من جديد
  */
-@Database(entities = {MyUser.class, mySubject.class, MyTask.class},version = 1)
+@Database(entities = {MyUser.class, MySubject.class, MyTask.class},version = 1)
 /**
  * الفئة المسؤولة عن بناء قاعدة البيانات لكل جداولها
  * وتوفر لنا كائن للتعامل مع قاعدة البيانات

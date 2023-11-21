@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.hananapp.data.AppDatabase;
 import com.example.hananapp.data.MySubject.MySubjectQuery;
-import com.example.hananapp.data.MySubject.mySubject;
+import com.example.hananapp.data.MySubject.MySubject;
 
 public class SplashScreen extends AppCompatActivity
 {
@@ -32,9 +32,9 @@ private TextView tvWelcomeToHananApp;
         //مؤشر للجدول
         MySubjectQuery subjectQuery = db.getMySubjectQuery();
        // بناء كائن من نوع الجدول وتحديد قيم الصفات
-         mySubject s1=new mySubject();
+         MySubject s1=new MySubject();
          s1.title=("math");
-        mySubject s2=new mySubject();
+        MySubject s2=new MySubject();
         s2.title="computers";
         //اضافة كائن للجدول
       subjectQuery.insertSubject(s1);

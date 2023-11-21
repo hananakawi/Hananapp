@@ -4,7 +4,7 @@ import androidx.room.PrimaryKey;
 
 
 @Entity
-public class mySubject
+public class MySubject
 {
 
     @PrimaryKey(autoGenerate = true)

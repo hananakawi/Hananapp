@@ -15,7 +15,6 @@ import java.util.List;
 @Dao//لتحديد ان الواجهة تحوي استعلامات على قاعدة بيانات
 public interface MyuserQuery
 {
-    MyuserQuery checkEmailpassword(String email, String pass);
 
 
         @Query("SELECT * FROM MyUser")
