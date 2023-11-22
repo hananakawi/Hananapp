@@ -7,10 +7,12 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import com.example.hananapp.data.AppDatabase;
 import com.example.hananapp.data.MySubject.MySubject;
 import com.example.hananapp.data.MySubject.MySubjectQuery;
+import com.example.hananapp.data.MytaskTable.MyTask;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
@@ -50,6 +52,63 @@ public class AddTaskActivity extends AppCompatActivity {
         //مصدرالمعطيات:استخراج جميع المواضيع من الجدول
         List<MySubject> allSubjects=subjectQuery.getAllSubjects();
         //تجهيز الوسيط
-       // ArrayAdapter<MySubjectQuery> adapter=new ArrayAdapter<>()
+        ArrayAdapter<MySubjectQuery> adapter=new ArrayAdapter<MySubject>(this, android.R.layout.simple_dropdown_item_1line);
     }
+    private void checkShortTitleAndText()
+    {
+
+        boolean isAllOk=true; // يحوي نتيجة فحص الحقول ان كانت سليمة
+
+        String shortTitle= etShortTitle.getText().toString();
+        String text= etText.getText().toString();
+        String whichsubj= autoEtSubj.getText().toString();
+
+
+        int importancee=skbrImportance.getProgress();
+
+
+        if (shortTitle.length()<1)
+        {
+            isAllOk=false;
+            etShortTitle.setError("short title is empty");
+        }
+
+        if (text.length()<1)
+        {
+            isAllOk=false;
+            etText.setError("text is empty");
+        }
+        if (whichsubj.length()<1)
+        {
+            isAllOk=false;
+            autoEtSubj.setError("you didn't chose the subject");
+
+        }
+
+        if (isAllOk)
+        {
+            Toast.makeText(this,"All ok", Toast.LENGTH_SHORT).show();
+            AppDatabase db=AppDatabase.getDB(getApplicationContext());
+            MySubjectQuery subjectQuery=db.getMySubjectQuery();
+
+
+            if (subjectQuery.checkSubject(whichsubj)==null) // فحص هل الموضوع من قبل بالجدول
+            {
+                //بناء موضوع جديد واضافته
+                MySubject subject=new MySubject();
+                subject.title=whichsubj;
+                subjectQuery.insertSubject(subject);
+            }
+            //استخراج id الموضوع لأننا بحاجة لرقمه التسلسلي
+
+           MySubject= subjectQuery.checkSubject(whichsubj);
+
+
+            MyTask task=new MyTask();
+            task.importance=importancee;
+            task.text=text;
+            task.shortTitle=shortTitle;
+            task.subid=subject.getKeyid();//تحديد رقم الموضوع للمهة
+            db.getMyTaskQuery().insert(task);//اضافة المهمة للجدول
+            finish();
 }
