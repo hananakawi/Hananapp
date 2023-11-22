@@ -7,6 +7,8 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 
+import com.example.hananapp.data.MySubject.MySubject;
+
 import java.util.List;
 @Dao
 public interface MytaskQuery {
@@ -42,6 +44,10 @@ public interface MytaskQuery {
      */
     @Insert
     void insertAll(MyTask... tasks);// تلت نقط يعني مجموعة
+    @Query("SELECT * FROM MyTask")
+    List<MyTask> getAllTasks();
+    @Query("SELECT * FROM MyTask")
+    List<MyTask> getTasksBySubjId(long Key_id);
 
     /**
      * حذف مهمات

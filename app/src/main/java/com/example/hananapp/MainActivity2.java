@@ -3,7 +3,9 @@ package com.example.hananapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -39,12 +41,52 @@ public class MainActivity2 extends AppCompatActivity {
             subjectAdapter.add(subject.title);
         }
         spnrSubject.setAdapter(subjectAdapter);//ربط السبنر بالوسيط
+        //معالج حدث لاختيار موضوع بالسبنر
+        spnrSubject.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //استخراج الموضوع حسب رقمه الترتيبي
+                String item = subjectAdapter.getItem(i);
+                if(item.equals("ALL"))//هذه يعني عرض جميع المهام
+                    initAllListView();
+                else {
+                    //استخراج كائن الموضوع الذي اخترناه لاستخراج رقمه
+                    MySubject subject = subjectQuery.checkSubject(item);
+                    //استدعاء العملية التي تجهز القائمة حسب رقم الموضوع
+                    initListViewBySubjId(subject.getKeyid());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
     /**تجهيز قائمة جميع المهمات وعرضها ب ليست فيو*/
     private void initAllListView(){
         AppDatabase db=AppDatabase.getDB(getApplicationContext());
         MytaskQuery taskQuery = db.getMyTaskQuery();
-        List<MyTask> allTasks =
+        List<MyTask> allTasks = taskQuery.getAllTasks();
+        ArrayAdapter<MyTask>tsksAdapter=new ArrayAdapter<MyTask>(this, android.R.layout.simple_list_item_1);
+        tsksAdapter.addAll(allTasks);
+        lstvTasks.setAdapter(tsksAdapter);
+
+    }
+
+    /**
+     * تجهيز قائمة المهمات حسب رقم الموضوع
+     * @param  Key_id*رقم الموضوع
+     */
+    private void initListViewBySubjId(long Key_id)
+    {
+        AppDatabase db=AppDatabase.getDB(getApplicationContext());
+        MytaskQuery taskQuery = db.getMyTaskQuery();
+        //يجب اضافة عملية اعيد جميع المهمات حسب رقم الموضوع
+        List<MyTask> allTasks = taskQuery.getTasksBySubjId(Key_id);
+        ArrayAdapter<MyTask> taksAdapter=new ArrayAdapter<MyTask>(this, android.R.layout.simple_list_item_1);
+        taksAdapter.addAll(allTasks);
+        lstvTasks.setAdapter(taksAdapter);
     }
 
     @Override

@@ -24,6 +24,7 @@ public class MyTask {
     public long userId;
     public String shortTitle;
 
+
     @Override
     public String toString() {
         return "MytaskTable{" +
