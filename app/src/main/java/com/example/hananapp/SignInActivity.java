@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.hananapp.data.AppDatabase;
+import com.example.hananapp.data.usersTable.MyUser;
 import com.example.hananapp.data.usersTable.MyuserQuery;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -68,8 +69,8 @@ private Button  btnSignUp;
             AppDatabase db=AppDatabase.getDB(getApplicationContext());
             //مؤشر لكائن عمليات الجدول
             MyuserQuery userQuery = (MyuserQuery) db.getMyUserQuery();
-            MyuserQuery MyUser = userQuery.checkEmailpassword(email, pass);
-            if (MyUser==null){
+            MyUser myUser = userQuery.checkEmailPassword(email, pass);
+            if (myUser==null){
                 Toast.makeText(this, "wrong email or password", Toast.LENGTH_LONG).show();
 
             }
