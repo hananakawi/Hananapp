@@ -11,6 +11,15 @@ public class MySubject
    public long key_id;
     public String title;
 
+
+    public String getTitle() {
+        return title;
+    }
+
+    public long getKeyid() {
+        return key_id;
+    }
+
     @Override
     public String toString() {
         return "mySubject{" +

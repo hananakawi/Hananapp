@@ -32,4 +32,6 @@ void insertSubject(MySubject... t); //ثلاثة نقاط تعني ادخال م
 
     @Query("DELETE FROM MySubject WHERE key_id=:id ")
     void delTask(long id);
+    @Query("SELECT * FROM Mysubject WHERE title = :whsubject")
+    MySubject checkSubject(String whsubject);
 }

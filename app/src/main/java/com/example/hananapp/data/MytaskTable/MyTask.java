@@ -22,6 +22,7 @@ public class MyTask {
      * رقم المستعمل الذي اضاف المهمة
      */
     public long userId;
+    public String shortTitle;
 
     @Override
     public String toString() {
