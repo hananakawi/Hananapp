@@ -46,5 +46,5 @@ public interface MyuserQuery
 
         @Query("SELECT * FROM MyUser WHERE email = :email AND " +
                 "password = :pass LIMIT 1")
-        MyuserQuery checkEmailpassword(String email, String pass);
+        MyUser checkEmailpassword(String email, String pass);
 }

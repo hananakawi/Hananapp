@@ -36,15 +36,14 @@ public class SignUpActivity extends AppCompatActivity {
         etname=findViewById(R.id.etname);
         etphone=findViewById(R.id.etphone);
     }
-    public void onClickSigUp(View v) {
+    public void onClickSave(View v) {
         checkData();
 
 
     }
 
-    public void onClickSave(View v) {
-        Intent i = new Intent(SignUpActivity.this, SplashScreen.class);
-        startActivity(i);
+    public void onClickCancel(View v) {
+
         finish();
     }
     private void checkData()

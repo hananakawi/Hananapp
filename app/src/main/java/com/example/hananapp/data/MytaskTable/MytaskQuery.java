@@ -46,7 +46,8 @@ public interface MytaskQuery {
     void insertAll(MyTask... tasks);// تلت نقط يعني مجموعة
     @Query("SELECT * FROM MyTask")
     List<MyTask> getAllTasks();
-    @Query("SELECT * FROM MyTask")
+    //ترجع جميع المهام حسب رقم الموضوع
+    @Query("SELECT * FROM MyTask WHERE keyid=:Key_id")
     List<MyTask> getTasksBySubjId(long Key_id);
 
     /**
