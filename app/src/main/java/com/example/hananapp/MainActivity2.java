@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
@@ -112,5 +115,39 @@ public class MainActivity2 extends AppCompatActivity {
         fabAdd=findViewById(R.id.fabAdd);
 
 
+    }
+    @Override//بناء قائمة
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+    }
+    @Override//معالجة حدث اختيار عنصر من القائمة
+        public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if (item.getItemId()==R.id.itmSetting)
+        {
+        }
+        if ((item.getItemId()==R.id.itmSingout))
+        {
+        }
+        return true;
+    }
+    /**
+     * دالة مساعدة لفتح قائمة تتلقى بارمتر للكائن الذي سبب فتح القائمة
+     */
+    public void showMenu(View v)
+    {
+        //بناء قائمة popup menu
+        PopupMenu popup=new PopupMenu(this,v);//الكائن الذي سبب فتح القائمة v
+        //ملف القائمة
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                return false;
+            }
+        });
+        popup.inflate(R.menu.popup_menu);
+        popup.show();//فتح وعرض القائمة
     }
 }

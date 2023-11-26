@@ -3,6 +3,7 @@ package com.example.hananapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -54,7 +55,15 @@ public class AddTaskActivity extends AppCompatActivity {
         List<MySubject> allSubjects=subjectQuery.getAllSubjects();
         //تجهيز الوسيط
         ArrayAdapter<MySubject> adapter=new ArrayAdapter<MySubject>(this, android.R.layout.simple_dropdown_item_1line);
-
+     adapter.addAll(allSubjects);//اضافة جميع المعطيات للوسيط
+        autoEtSubj.setAdapter(adapter);//ربط الحقل بالوسيط
+        //معالجة حدث لعرض المواضيع عند الضغط على الحقل
+        autoEtSubj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                autoEtSubj.showDropDown();
+            }
+        });
     }
     private void checkShortTitleAndText()
     {
@@ -113,10 +122,6 @@ public class AddTaskActivity extends AppCompatActivity {
             task.subjId=subject.getKeyid();//تحديد رقم الموضوع للمهة
             db.getMyTaskQuery().insertAll(task);//اضافة المهمة للجدول
             finish();
-
-
-
-
         }
 
 
