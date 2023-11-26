@@ -1,0 +1,64 @@
+Index: app/src/main/java/com/example/hananapp/AddTaskActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.hananapp;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.os.Bundle;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.AutoCompleteTextView;\r\nimport android.widget.Button;\r\nimport android.widget.SeekBar;\r\n\r\nimport com.example.hananapp.data.AppDatabase;\r\nimport com.example.hananapp.data.MySubject.MySubject;\r\nimport com.example.hananapp.data.MySubject.MySubjectQuery;\r\nimport com.google.android.material.textfield.TextInputLayout;\r\n\r\nimport java.util.List;\r\n\r\npublic class AddTaskActivity extends AppCompatActivity {\r\n    private Button btnCancelTask;\r\n    private Button btnSaveTask;\r\n    private SeekBar skbrImportance;\r\n    private TextInputLayout etShortTitle;\r\n    private TextInputLayout etText;\r\n    private AutoCompleteTextView autoEtSubj;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_add_task);\r\n        autoEtSubj=findViewById(R.id.etSubject);\r\n       initAutoEtSubjects();\r\n        btnCancelTask=findViewById(R.id.btnCancelTask);\r\n        btnSaveTask=findViewById(R.id.btnSaveTask);\r\n        skbrImportance=findViewById(R.id.skbrImportance);\r\n        etShortTitle=findViewById(R.id.etShortTitle);\r\n        etText=findViewById(R.id. etText);\r\n\r\n    }\r\n\r\n    /**\r\n     * استخراج اسماء المواضيع من جدول مواضيع وعرضه بالحقل من نوع\r\n     * AutoCompleteTextView\r\n     * طريقة التعامل معه شبيه بال\"سبنر\"\r\n     */\r\n    private void initAutoEtSubjects()\r\n    {\r\n        //مؤشر لقاعدة البيانات\r\n        AppDatabase db=AppDatabase.getDB(getApplicationContext());\r\n        //مؤشر لواجهة استعلامات جدول المواضيع\r\n        MySubjectQuery subjectQuery = db.getMySubjectQuery();\r\n        //مصدرالمعطيات:استخراج جميع المواضيع من الجدول\r\n        List<MySubject> allSubjects=subjectQuery.getAllSubjects();\r\n        //تجهيز الوسيط\r\n       // ArrayAdapter<MySubjectQuery> adapter=new ArrayAdapter<>()\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/hananapp/AddTaskActivity.java b/app/src/main/java/com/example/hananapp/AddTaskActivity.java
+--- a/app/src/main/java/com/example/hananapp/AddTaskActivity.java	(revision 86f060658402f01e8e42c41d97dd4ff17d7bafb0)
++++ b/app/src/main/java/com/example/hananapp/AddTaskActivity.java	(date 1700644380465)
+@@ -3,6 +3,7 @@
+ import androidx.appcompat.app.AppCompatActivity;
+ 
+ import android.os.Bundle;
++import android.view.View;
+ import android.widget.ArrayAdapter;
+ import android.widget.AutoCompleteTextView;
+ import android.widget.Button;
+@@ -13,6 +14,7 @@
+ import com.example.hananapp.data.MySubject.MySubjectQuery;
+ import com.google.android.material.textfield.TextInputLayout;
+ 
++import java.util.Collection;
+ import java.util.List;
+ 
+ public class AddTaskActivity extends AppCompatActivity {
+@@ -50,6 +52,16 @@
+         //مصدرالمعطيات:استخراج جميع المواضيع من الجدول
+         List<MySubject> allSubjects=subjectQuery.getAllSubjects();
+         //تجهيز الوسيط
+-       // ArrayAdapter<MySubjectQuery> adapter=new ArrayAdapter<>()
++        ArrayAdapter<MySubject> adapter= new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line);
++        adapter.addAll( allSubjects);//اضافة جميع المعطيات للوسيط
++        autoEtSubj.setAdapter(adapter);//ربط الحقل بالوسيط
++        //معالجة حدث لعرض المواضيع عند الضغط على الحقل
++        autoEtSubj.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                autoEtSubj.showDropDown();
++            }
++        });
+     }
++
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/example/hananapp/data/usersTable/MyuserQuery.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.hananapp.data.usersTable;\r\n\r\nimport androidx.room.Dao;\r\nimport androidx.room.Delete;\r\nimport androidx.room.Insert;\r\nimport androidx.room.Query;\r\nimport androidx.room.Update;\r\n\r\nimport java.util.List;\r\n\r\n\r\n/**\r\n * واجهة تحوي عمليات/دوال/استعلامات على قاعدة البيانات\r\n */\r\n@Dao//لتحديد ان الواجهة تحوي استعلامات على قاعدة بيانات\r\npublic interface MyuserQuery\r\n{\r\n\r\n\r\n        @Query(\"SELECT * FROM MyUser\")\r\n        List<MyUser> getAll();\r\n\r\n        @Query(\"SELECT * FROM MyUser WHERE keyid IN (:userIds)\")\r\n        List<MyUser> loadAllByIds(int[] userIds);\r\n\r\n        @Query(\"SELECT * FROM MyUser WHERE email = :myEmail AND \" +\r\n                \"password = :myPassw LIMIT 1\")\r\n        MyUser checkEmailPassword(String myEmail, String myPassw);\r\n\r\n        @Query(\"SELECT * FROM MyUser Where email = :myEmail\")\r\n        MyUser checkEmail(String myEmail);\r\n\r\n        @Insert\r\n        void insertAll(MyUser... users);\r\n\r\n        @Delete\r\n        void delete(MyUser user);\r\n\r\n        @Query(\"Delete From MYUSER WHERE keyid=:id \")\r\n        void delete(int id);\r\n\r\n        @Insert\r\n        void insert(MyUser myUser);\r\n        @Update\r\n        void update(MyUser...values);\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/hananapp/data/usersTable/MyuserQuery.java b/app/src/main/java/com/example/hananapp/data/usersTable/MyuserQuery.java
+--- a/app/src/main/java/com/example/hananapp/data/usersTable/MyuserQuery.java	(revision 86f060658402f01e8e42c41d97dd4ff17d7bafb0)
++++ b/app/src/main/java/com/example/hananapp/data/usersTable/MyuserQuery.java	(date 1700587619536)
+@@ -44,5 +44,7 @@
+         @Update
+         void update(MyUser...values);
+ 
+-
++        @Query("SELECT * FROM MyUser WHERE email = :email AND " +
++                "password = :pass LIMIT 1")
++        MyuserQuery checkEmailpassword(String email, String pass);
+ }
