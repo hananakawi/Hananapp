@@ -31,20 +31,17 @@ public class MainActivity2 extends AppCompatActivity {
     private ListView lstvTasks;
 
 
-
-
     /**
      * عملية تجهيز السبنر بالمواضيع
      */
-    private void initSubjectSpnr()
-    {
+    private void initSubjectSpnr() {
         AppDatabase db = AppDatabase.getDB(getApplicationContext());
-        MySubjectQuery subjectQuery= db.getMySubjectQuery();//عمليات جدول المعطيات
-        List<MySubject> allSubjects=subjectQuery.getAllSubjects();//استخراج جميع المعطيات
+        MySubjectQuery subjectQuery = db.getMySubjectQuery();//عمليات جدول المعطيات
+        List<MySubject> allSubjects = subjectQuery.getAllSubjects();//استخراج جميع المعطيات
         //تجهيز الوسيط
         ArrayAdapter<String> subjectAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line);
         subjectAdapter.add("ALL");//تظهر اولا بالسبنر تعني عرض جميع المهمات
-        for (MySubject subject: allSubjects){//اضافة المواضيع للوسيط
+        for (MySubject subject : allSubjects) {//اضافة المواضيع للوسيط
             subjectAdapter.add(subject.title);
         }
         spnrSubject.setAdapter(subjectAdapter);//ربط السبنر بالوسيط
@@ -54,7 +51,7 @@ public class MainActivity2 extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 //استخراج الموضوع حسب رقمه الترتيبي
                 String item = subjectAdapter.getItem(i);
-                if(item.equals("ALL"))//هذه يعني عرض جميع المهام
+                if (item.equals("ALL"))//هذه يعني عرض جميع المهام
                     initAllListView();
                 else {
                     //استخراج كائن الموضوع الذي اخترناه لاستخراج رقمه
@@ -70,12 +67,15 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
     }
-    /**تجهيز قائمة جميع المهمات وعرضها ب ليست فيو*/
-    private void initAllListView(){
-        AppDatabase db=AppDatabase.getDB(getApplicationContext());
+
+    /**
+     * تجهيز قائمة جميع المهمات وعرضها ب ليست فيو
+     */
+    private void initAllListView() {
+        AppDatabase db = AppDatabase.getDB(getApplicationContext());
         MytaskQuery taskQuery = db.getMyTaskQuery();
         List<MyTask> allTasks = taskQuery.getAllTasks();
-        ArrayAdapter<MyTask>tsksAdapter=new ArrayAdapter<MyTask>(this, android.R.layout.simple_list_item_1);
+        ArrayAdapter<MyTask> tsksAdapter = new ArrayAdapter<MyTask>(this, android.R.layout.simple_list_item_1);
         tsksAdapter.addAll(allTasks);
         lstvTasks.setAdapter(tsksAdapter);
 
@@ -83,15 +83,15 @@ public class MainActivity2 extends AppCompatActivity {
 
     /**
      * تجهيز قائمة المهمات حسب رقم الموضوع
-     * @param  Key_id*رقم الموضوع
+     *
+     * @param Key_id*رقم الموضوع
      */
-    private void initListViewBySubjId(long Key_id)
-    {
-        AppDatabase db=AppDatabase.getDB(getApplicationContext());
+    private void initListViewBySubjId(long Key_id) {
+        AppDatabase db = AppDatabase.getDB(getApplicationContext());
         MytaskQuery taskQuery = db.getMyTaskQuery();
         //يجب اضافة عملية اعيد جميع المهمات حسب رقم الموضوع
         List<MyTask> allTasks = taskQuery.getTasksBySubjId(Key_id);
-        ArrayAdapter<MyTask> taksAdapter=new ArrayAdapter<MyTask>(this, android.R.layout.simple_list_item_1);
+        ArrayAdapter<MyTask> taksAdapter = new ArrayAdapter<MyTask>(this, android.R.layout.simple_list_item_1);
         taksAdapter.addAll(allTasks);
         lstvTasks.setAdapter(taksAdapter);
     }
@@ -101,53 +101,65 @@ public class MainActivity2 extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        fabAdd=findViewById(R.id.fabAdd);
+        fabAdd = findViewById(R.id.fabAdd);
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(MainActivity2.this,AddTaskActivity.class);
+                Intent i = new Intent(MainActivity2.this, AddTaskActivity.class);
                 startActivity(i);
             }
         });
-        srchV=findViewById(R.id.srchV);
-        spnrSubject=findViewById(R.id.spnrSubject);
-        lstvTasks=findViewById(R.id.lstvTasks);
-        fabAdd=findViewById(R.id.fabAdd);
+        srchV = findViewById(R.id.srchV);
+        spnrSubject = findViewById(R.id.spnrSubject);
+        lstvTasks = findViewById(R.id.lstvTasks);
+        fabAdd = findViewById(R.id.fabAdd);
 
 
     }
+
     @Override//بناء قائمة
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
+
     @Override//معالجة حدث اختيار عنصر من القائمة
-        public boolean onOptionsItemSelected(MenuItem item)
-    {
-        if (item.getItemId()==R.id.itmSetting)
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.itmSetting) {
         }
-        if ((item.getItemId()==R.id.itmSingout))
-        {
+        if ((item.getItemId() == R.id.itmSingout)) {
         }
         return true;
     }
+
     /**
      * دالة مساعدة لفتح قائمة تتلقى بارمتر للكائن الذي سبب فتح القائمة
      */
-    public void showMenu(View v)
-    {
+    public void showMenu(View v) {
         //بناء قائمة popup menu
-        PopupMenu popup=new PopupMenu(this,v);//الكائن الذي سبب فتح القائمة v
+        PopupMenu popup = new PopupMenu(this, v);//الكائن الذي سبب فتح القائمة v
         //ملف القائمة
+        popup.inflate(R.menu.options_menu);
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                return false;
-            }
+                if (item.getItemId() == R.id.itmAddTask) {
+
+                }
+                if (item.getItemId() == R.id.itmEdit) {
+                    Intent i = new Intent(MainActivity2.this, EditTaskActivity.class);
+                    startActivity(i);
+                    //to close current activity
+                    finish();
+                }
+                if (item.getItemId() == R.id.itmDelete) {
+
+                }
+
+            return true;
+        }
         });
-        popup.inflate(R.menu.popup_menu);
+
         popup.show();//فتح وعرض القائمة
     }
 }
