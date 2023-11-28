@@ -78,6 +78,17 @@ public class MainActivity2 extends AppCompatActivity {
         ArrayAdapter<MyTask> tsksAdapter = new ArrayAdapter<MyTask>(this, android.R.layout.simple_list_item_1);
         tsksAdapter.addAll(allTasks);
         lstvTasks.setAdapter(tsksAdapter);
+        lstvTasks.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override//رقم العنصر الذي سبب الحدث
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                showMenu(view,tsksAdapter.getItem(position));//رقم العنصر الذي سبب الحدث
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 
@@ -138,7 +149,7 @@ public class MainActivity2 extends AppCompatActivity {
     /**
      * دالة مساعدة لفتح قائمة تتلقى بارمتر للكائن الذي سبب فتح القائمة
      */
-    public void showMenu(View v) {
+    public void showMenu(View v,MyTask t) {
         //بناء قائمة popup menu
         PopupMenu popup = new PopupMenu(this, v);//الكائن الذي سبب فتح القائمة v
         //ملف القائمة
