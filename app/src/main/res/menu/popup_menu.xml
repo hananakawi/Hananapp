@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/itmSetting"
-        android:title="Setting" />
+        android:id="@+id/itmComplete"
+        android:title="Complete" />
     <item
-        android:id="@+id/itmSingout"
-        android:title="SingOut" />
+        android:id="@+id/itmEdit"
+        android:title="Edit" />
     <item
         android:id="@+id/itmHistory"
         android:icon="@android:drawable/ic_menu_recent_history"
@@ -15,6 +15,6 @@
         android:visible="true"
         app:showAsAction="always|withText" />
     <item
-        android:id="@+id/itmAddTask"
-        android:title="AddTask" />
+        android:id="@+id/itmDelete"
+        android:title="Delete" />
 </menu>

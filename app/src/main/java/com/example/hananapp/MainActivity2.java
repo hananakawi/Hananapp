@@ -7,13 +7,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.hananapp.data.AppDatabase;
 import com.example.hananapp.data.MySubject.MySubject;
@@ -119,16 +119,19 @@ public class MainActivity2 extends AppCompatActivity {
 
     @Override//بناء قائمة
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.options_menu, menu);
         return true;
     }
 
     @Override//معالجة حدث اختيار عنصر من القائمة
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.itmSetting) {
+            Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show();
         }
-        if ((item.getItemId() == R.id.itmSingout)) {
+        if ((item.getItemId() == R.id.itmLogOut)) {
+            Toast.makeText(this, "LogOut", Toast.LENGTH_SHORT).show();
         }
+
         return true;
     }
 
@@ -139,21 +142,22 @@ public class MainActivity2 extends AppCompatActivity {
         //بناء قائمة popup menu
         PopupMenu popup = new PopupMenu(this, v);//الكائن الذي سبب فتح القائمة v
         //ملف القائمة
-        popup.inflate(R.menu.options_menu);
+        popup.inflate(R.menu.popup_menu);
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.itmAddTask) {
+                    Intent i = new Intent(MainActivity2.this, AddTaskActivity.class);
+                    startActivity(i);
 
                 }
                 if (item.getItemId() == R.id.itmEdit) {
                     Intent i = new Intent(MainActivity2.this, EditTaskActivity.class);
                     startActivity(i);
-                    //to close current activity
-                    finish();
+
                 }
                 if (item.getItemId() == R.id.itmDelete) {
-
+                    Toast.makeText(MainActivity2.this, "Delete", Toast.LENGTH_SHORT).show();
                 }
 
             return true;
