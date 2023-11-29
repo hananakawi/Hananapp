@@ -2,6 +2,7 @@ package com.example.hananapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -64,6 +65,16 @@ public class AddTaskActivity extends AppCompatActivity {
                 autoEtSubj.showDropDown();
             }
         });
+    }
+    public void onClickSave(View V)
+    {
+        checkShortTitleAndText();
+        Intent i = new Intent(AddTaskActivity.this, MainActivity2.class);
+        startActivity(i);
+    }
+    public void onClickCancelAddTask(View v)
+    {
+        finish();
     }
     private void checkShortTitleAndText()
     {

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -142,6 +143,12 @@ public class MainActivity2 extends AppCompatActivity {
         if ((item.getItemId() == R.id.itmLogOut)) {
             Toast.makeText(this, "LogOut", Toast.LENGTH_SHORT).show();
         }
+        if (item.getItemId() == R.id.itmAddTask) {
+            Toast.makeText(MainActivity2.this, "Add", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(MainActivity2.this, AddTaskActivity.class);
+            startActivity(i);
+
+        }
 
         return true;
     }
@@ -157,15 +164,9 @@ public class MainActivity2 extends AppCompatActivity {
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.itmAddTask) {
-                    Intent i = new Intent(MainActivity2.this, AddTaskActivity.class);
-                    startActivity(i);
 
-                }
                 if (item.getItemId() == R.id.itmEdit) {
-                    Intent i = new Intent(MainActivity2.this, EditTaskActivity.class);
-                    startActivity(i);
-
+                    Toast.makeText(MainActivity2.this, "Edit", Toast.LENGTH_SHORT).show();
                 }
                 if (item.getItemId() == R.id.itmDelete) {
                     Toast.makeText(MainActivity2.this, "Delete", Toast.LENGTH_SHORT).show();
@@ -176,5 +177,49 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
         popup.show();//فتح وعرض القائمة
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("HA","onRestart");
+        Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("HA","onStart");
+        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("HA","onResume");
+        Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
+        initSubjectSpnr();
+        initAllListView();
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("HA","onPause");
+        Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("HA","onDestroy");
+        Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("HA","onStop");
+        Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
     }
 }

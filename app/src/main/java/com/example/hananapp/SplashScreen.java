@@ -56,47 +56,6 @@ private TextView tvWelcomeToHananApp;
 
 
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d("HA","onRestart");
-        Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d("HA","onStart");
-        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("HA","onResume");
-        Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d("HA","onPause");
-        Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("HA","onDestroy");
-        Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("HA","onStop");
-        Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
-    }
 }
