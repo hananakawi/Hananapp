@@ -1,7 +1,9 @@
 package com.example.hananapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -142,6 +144,7 @@ public class MainActivity2 extends AppCompatActivity {
         }
         if ((item.getItemId() == R.id.itmLogOut)) {
             Toast.makeText(this, "LogOut", Toast.LENGTH_SHORT).show();
+            showYesNoDialog();
         }
         if (item.getItemId() == R.id.itmAddTask) {
             Toast.makeText(MainActivity2.this, "Add", Toast.LENGTH_SHORT).show();
@@ -222,4 +225,34 @@ public class MainActivity2 extends AppCompatActivity {
         Log.d("HA","onStop");
         Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
     }
+
+    /**
+     * بناء ديالوج
+     */
+    public void showYesNoDialog()
+    {
+      //تجهيز بناء شباك حوار"ديالوغ" يتلقى بارمتر مؤشر للنشاط (الاكتيفيتي)الحالي
+        AlertDialog.Builder builder= new AlertDialog.Builder(this);
+        builder.setTitle("Log out");//تحديد العنوان
+        builder.setMessage("Are you sure?");//تحدي فحوى شباك الحوار
+        builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //معالجة حدث للموافقة
+                Toast.makeText(MainActivity2.this, "Signing out", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+        //الص على الزر ومعالجة الحدث
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //معالجة الحدث الموافقة
+                Toast.makeText(MainActivity2.this, "not Signing out", Toast.LENGTH_SHORT).show();
+            }
+        });
+        AlertDialog dialog= builder.create();//بناء شباك الحوار - ديالوغ
+        dialog.show();//عرض الشباك
+    }
+
 }
