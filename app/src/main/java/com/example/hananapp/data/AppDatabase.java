@@ -62,7 +62,7 @@ version
         if(db==null)
         {
             db = Room.databaseBuilder(context,
-                            AppDatabase.class, "database-name")
+                            AppDatabase.class, "database-name")//تحديد اسم قاعدة البيانات
                     .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
                     .build();

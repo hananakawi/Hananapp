@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "918117941146",
+    "project_id": "hananapp-afc15",
+    "storage_bucket": "hananapp-afc15.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918117941146:android:c0afcea36f1eb6aa40c423",
+        "android_client_info": {
+          "package_name": "com.example.hananapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5rvwllTN6wkoPHMxSIn6Tiz_ssg8BV3w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
