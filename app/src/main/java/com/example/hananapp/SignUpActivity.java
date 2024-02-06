@@ -185,15 +185,22 @@ public class SignUpActivity extends AppCompatActivity {
         if (isAllOk)
         {
             Toast.makeText(this,"All ok",Toast.LENGTH_SHORT).show();
-            FirebaseAuth auth=FirebaseAuth.getInstance();//كائن لعملية التسجيل
+            FirebaseAuth auth=FirebaseAuth.getInstance();//بناء كائن لعملية التسجيل
             // بناء حساب بمساعدة الميل وكلمة السر
             auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) //
+                @Override//الاستجابة الواردة من محاولة التسجيل في السحابة
+                public void onComplete(@NonNull Task<AuthResult> task) //البارمتر يحتوي على معلومات من الخادم حول نتيجة طلب التسجيل
                 {
-                    if(task.isSuccessful())
+                    if(task.isSuccessful())//هل العملية ناجحة
                     {
-                        Toast.makeText(SignUpActivity.this;
+                        Toast.makeText(SignUpActivity.this, "Signingup succeeded",Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(SignUpActivity.this, "Signingup failed",Toast.LENGTH_SHORT).show();
+                        etE_mail.setError(task.getException().getMessage());//ظهور رسالة الخاطئة من السحابة
+
                     }
                 }
             });
