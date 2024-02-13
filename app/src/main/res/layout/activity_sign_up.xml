@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:onClick="onClickCancelfirebase"
     tools:context=".SignUpActivity">
 
     <LinearLayout
@@ -20,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:onClick="onClickCancel"
+                android:onClick="onClickCancelfirebase"
                 android:text="Cancel"
                 android:textSize="16sp" />
 
@@ -30,7 +31,7 @@
                 android:layout_height="wrap_content"
 
                 android:layout_weight="1"
-                android:onClick="onClickSave"
+                android:onClick="onClickSavefirebase"
                 android:text="save"
                 android:textSize="16sp" />
         </LinearLayout>

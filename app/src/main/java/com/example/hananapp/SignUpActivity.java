@@ -33,82 +33,73 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        btnCancel=findViewById(R.id.btnCancel);
-        btnSave=findViewById(R.id.btnSave);
-        etE_mail=findViewById(R.id.etE_mail);
-        etpassword=findViewById(R.id.etpassword);
-        etrepassword=findViewById(R.id.etrepassword);
-        etname=findViewById(R.id.etname);
-        etphone=findViewById(R.id.etphone);
+        btnCancel = findViewById(R.id.btnCancel);
+        btnSave = findViewById(R.id.btnSave);
+        etE_mail = findViewById(R.id.etE_mail);
+        etpassword = findViewById(R.id.etpassword);
+        etrepassword = findViewById(R.id.etrepassword);
+        etname = findViewById(R.id.etname);
+        etphone = findViewById(R.id.etphone);
     }
-    public void onClickSave(View v) {
-        checkData();
 
 
-    }
 
     public void onClickCancel(View v) {
 
         finish();
     }
-    private void checkData()
-    {
-        boolean isAllOk=true; // يحوي نتيجة فحص الحقول ان كانت سليمة
+
+    private void checkData() {
+        boolean isAllOk = true; // يحوي نتيجة فحص الحقول ان كانت سليمة
 
         // استخراج النص من حقل الايميل
-        String email= etE_mail.getText().toString();
+        String email = etE_mail.getText().toString();
 
         // استخراج نص كلمة المرور
-        String pass=etpassword.getText().toString();
+        String pass = etpassword.getText().toString();
 
         // استخراج تكرار كلمة المرور
-        String repassword=etrepassword.getText().toString();
+        String repassword = etrepassword.getText().toString();
 
         // استخراج الاسم
-        String name=etname.getText().toString();
+        String name = etname.getText().toString();
 
         //استخراج رقم الهاتف
-        String number=etphone.getText().toString();
+        String number = etphone.getText().toString();
 
         // فحص الايميل ان كان طوله أقل من 6 أو لا يحتوي على @ فهو خاطئ
-        if (email.length()<6 || email.contains("@")== false)
-        {
+        if (email.length() < 6 || email.contains("@") == false) {
             // تعديل المتغير ليدل على أن الفحص يعطي نتيجة خاطئة
-            isAllOk=false;
+            isAllOk = false;
             // عرض ملاحظة خطأ على الشاشة داخل حقل البريد
             etE_mail.setError("wrong email");
         }
 
         // يجب أن تكون كلمة المرر من ثمانية ولا تحوي فراغ اذا كان بها هذه الأشياء فانه يرجع نص بأن كلمة المرور خاطئة
-        if (pass.length()<8 || pass.contains(" ")== true)
-        {
-            isAllOk=false;
+        if (pass.length() < 8 || pass.contains(" ") == true) {
+            isAllOk = false;
             etpassword.setError("Wrong password");
         }
 
         //يجب أن يكون تكرار كلمة المرور نفس كلمة المرور
-        if (repassword.equals(pass)==false)
-        {
-            isAllOk=false;
+        if (repassword.equals(pass) == false) {
+            isAllOk = false;
             etrepassword.setError("not the same");
         }
 
         //يجب أن يكون الاسم اجباري ولو حر واحد لو ترك الاسم بدون أن يكتبه فانه يرجع نص بانه فارغ
-        if (name.length()<1)
-        {
-            isAllOk=false;
+        if (name.length() < 1) {
+            isAllOk = false;
             etname.setError("name is empty");
         }
 
         //يفحص اذا الرقم مكون من 10 أرقام واذا لم يكن من 10 أرقام فانه يرجع نص بانه خطأ
-        if (number.length()!=10)
-        {
+        if (number.length() != 10) {
             etphone.setError("Wrong number");
         }
 
-        if (isAllOk)
-        {
-            Toast.makeText(this,"All ok",Toast.LENGTH_SHORT).show();
+        if (isAllOk) {
+            Toast.makeText(this, "All ok", Toast.LENGTH_SHORT).show();
             if (isAllOk) {
                 AppDatabase db = AppDatabase.getDB(getApplicationContext());
                 MyuserQuery userQurey = db.getMyUserQuery();
@@ -120,92 +111,92 @@ public class SignUpActivity extends AppCompatActivity {
                     MyUser.email = email;
                     MyUser.fullName = name;
                     MyUser.password = pass;
-                    userQurey .insert( MyUser);
+                    userQurey.insert(MyUser);
                     finish();
 
                 }
             }
         }
     }
-    private void checkDataAndSignUp_FB()
-    {
-        boolean isAllOk=true; // يحوي نتيجة فحص الحقول ان كانت سليمة
+
+    private void checkDataAndSignUp_FB() {
+        boolean isAllOk = true; // يحوي نتيجة فحص الحقول ان كانت سليمة
 
         // استخراج النص من حقل الايميل
-        String email= etE_mail.getText().toString();
+        String email = etE_mail.getText().toString();
 
         // استخراج نص كلمة المرور
-        String pass=etpassword.getText().toString();
+        String pass = etpassword.getText().toString();
 
         // استخراج تكرار كلمة المرور
-        String repassword=etrepassword.getText().toString();
+        String repassword = etrepassword.getText().toString();
 
         // استخراج الاسم
-        String name=etname.getText().toString();
+        String name = etname.getText().toString();
 
         //استخراج رقم الهاتف
-        String number=etphone.getText().toString();
+        String number = etphone.getText().toString();
 
         // فحص الايميل ان كان طوله أقل من 6 أو لا يحتوي على @ فهو خاطئ
-        if (email.length()<6 || email.contains("@")== false)
-        {
+        if (email.length() < 6 || email.contains("@") == false) {
             // تعديل المتغير ليدل على أن الفحص يعطي نتيجة خاطئة
-            isAllOk=false;
+            isAllOk = false;
             // عرض ملاحظة خطأ على الشاشة داخل حقل البريد
             etE_mail.setError("wrong email");
         }
 
         // يجب أن تكون كلمة المرر من ثمانية ولا تحوي فراغ اذا كان بها هذه الأشياء فانه يرجع نص بأن كلمة المرور خاطئة
-        if (pass.length()<8 || pass.contains(" ")== true)
-        {
-            isAllOk=false;
+        if (pass.length() < 8 || pass.contains(" ") == true) {
+            isAllOk = false;
             etpassword.setError("Wrong password");
         }
 
         //يجب أن يكون تكرار كلمة المرور نفس كلمة المرور
-        if (repassword.equals(pass)==false)
-        {
-            isAllOk=false;
+        if (repassword.equals(pass) == false) {
+            isAllOk = false;
             etrepassword.setError("not the same");
         }
 
         //يجب أن يكون الاسم اجباري ولو حر واحد لو ترك الاسم بدون أن يكتبه فانه يرجع نص بانه فارغ
-        if (name.length()<1)
-        {
-            isAllOk=false;
+        if (name.length() < 1) {
+            isAllOk = false;
             etname.setError("name is empty");
         }
 
         //يفحص اذا الرقم مكون من 10 أرقام واذا لم يكن من 10 أرقام فانه يرجع نص بانه خطأ
-        if (number.length()!=10)
-        {
+        if (number.length() != 10) {
             etphone.setError("Wrong number");
         }
 
-        if (isAllOk)
-        {
-            Toast.makeText(this,"All ok",Toast.LENGTH_SHORT).show();
-            FirebaseAuth auth=FirebaseAuth.getInstance();//بناء كائن لعملية التسجيل
+        if (isAllOk) {
+            Toast.makeText(this, "All ok", Toast.LENGTH_SHORT).show();
+            FirebaseAuth auth = FirebaseAuth.getInstance();//بناء كائن لعملية التسجيل
             // بناء حساب بمساعدة الميل وكلمة السر
-            auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override//الاستجابة الواردة من محاولة التسجيل في السحابة
                 public void onComplete(@NonNull Task<AuthResult> task) //البارمتر يحتوي على معلومات من الخادم حول نتيجة طلب التسجيل
                 {
-                    if(task.isSuccessful())//هل العملية ناجحة
+                    if (task.isSuccessful())//هل العملية ناجحة
                     {
-                        Toast.makeText(SignUpActivity.this, "Signingup succeeded",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, "Signingup succeeded", Toast.LENGTH_SHORT).show();
                         finish();
-                    }
-                    else
-                    {
-                        Toast.makeText(SignUpActivity.this, "Signingup failed",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(SignUpActivity.this, "Signingup failed", Toast.LENGTH_SHORT).show();
                         etE_mail.setError(task.getException().getMessage());//ظهور رسالة الخاطئة من السحابة
 
                     }
                 }
             });
-            }
-
         }
+
     }
+
+    public void onClickSavefirebase(View v) {
+        checkDataAndSignUp_FB();
+    }
+    public void onClickCancelfirebase(View v) {
+
+        finish();
+    }
+}
 
